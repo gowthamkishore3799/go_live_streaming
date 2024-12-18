@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>HLS Video Streaming</title>
+  <script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
+</head>
+<body>
+
+  <h1>HLS Video Streaming</h1>
+  
+  <video id="hls-video" controls width="640" height="360" autoplay></video>
+
+  <script>
+    // URL of the HLS stream received from the backend
+    var videoUrl = 'http://localhost:3000/streaming'; // Change to point to the .m3u8 file
+    
+    var video = document.getElementById('hls-video');
+
+    console.log("Waiting for video stream...");
+
+    // Check if the browser supports native HLS (Safari supports it)
+    if (video.canPlayType('application/vnd.apple.mpegurl')) {
+        console.log("Native HLS support detected, loading video...");
+        video.src = videoUrl;
+    } else if (Hls.isSupported()) {
+        var hls = new Hls();
+        console.log("Hls.js support detected, loading video...");
+        console.log(videoUrl)
+        hls.loadSource(videoUrl);
+        hls.attachMedia(video);
+        hls.on(Hls.Events.MANIFEST_PARSED, function() {
+            console.log("HLS manifest parsed, starting video playback...");
+            video.play();
+        });
+    } else {
+        alert('Your browser does not support HLS.');
+    }
+  </script>
+
+</body>
+</html>
