@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"io"
 	config "livestreaming/internal/config"
+	enums "livestreaming/internal/enum"
 	"log"
 
 	"github.com/aws/aws-sdk-go-v2/service/s3"
@@ -49,7 +50,7 @@ func findPlayList(c *fiber.Ctx) error {
 		bucketRegion, err := config.GetEnvValue("AWS_BUCKET_REGION")
 
 		if err != nil {
-			bucketRegion = "us-east-1" // default buckets
+			bucketRegion = string(enums.US_EAST_1) // default buckets
 		}
 
 		o.BaseEndpoint = aws.String("https://s3." + bucketRegion + ".amazonaws.com")
@@ -107,7 +108,7 @@ func SendSegment(c *fiber.Ctx) error {
 		bucketRegion, err := config.GetEnvValue("AWS_BUCKET_REGION")
 
 		if err != nil {
-			bucketRegion = "us-east-1" // default buckets
+			bucketRegion = string(enums.US_EAST_1) // default buckets
 		}
 
 		o.BaseEndpoint = aws.String("https://s3." + bucketRegion + ".amazonaws.com")
