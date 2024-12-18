@@ -136,7 +136,7 @@ func Streaming(app fiber.Router) {
 	config.ViperConfig()
 
 	app.Get("/health-check", func(c *fiber.Ctx) error {
-		return c.SendString("Running perfectly")
+		return c.SendString("Health check passed")
 	})
 
 	app.Get("/streaming", findPlayList)
