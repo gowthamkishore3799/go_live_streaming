@@ -18,8 +18,6 @@
     
     var video = document.getElementById('hls-video');
 
-    console.log("Waiting for video stream...");
-
     // Check if the browser supports native HLS (Safari supports it)
     if (video.canPlayType('application/vnd.apple.mpegurl')) {
         console.log("Native HLS support detected, loading video...");
@@ -27,7 +25,6 @@
     } else if (Hls.isSupported()) {
         var hls = new Hls();
         console.log("Hls.js support detected, loading video...");
-        console.log(videoUrl)
         hls.loadSource(videoUrl);
         hls.attachMedia(video);
         hls.on(Hls.Events.MANIFEST_PARSED, function() {
