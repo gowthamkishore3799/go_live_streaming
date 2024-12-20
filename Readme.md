@@ -4,7 +4,7 @@ This project focuses on how a streaming application can be built. It's not an in
 
 ## How it works: 
 
-To understand how it works, I will be publishing a Medium article on it soon.
+To understand how it works, [Medium Article]([https://choosealicense.com/licenses/mit/](https://medium.com/@gowthamkishore3/from-game-to-screen-demystifying-the-magic-behind-live-streaming-with-hls-f621c758ae28)).
 
 
 ## Contributing
